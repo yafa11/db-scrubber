@@ -1,0 +1,17 @@
+<phpunit bootstrap="./vendor/autoload.php"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         disallowChangesToGlobalState="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="Scrubber Core unit tests">
+            <directory>test/unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>

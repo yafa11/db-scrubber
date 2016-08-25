@@ -1,0 +1,41 @@
+; DB Scrubber configuration file.
+
+[general]
+; # showSqlStatements #
+; Displays the sql statements being used in the scrubber.  Do not enable this if you have production quantities of data.
+showSqlStatements = 0
+
+; # onlyProcessFreeTextClear #
+; When true, only the tables and fields listed in the app_freeTextClear section of the config will be processed.
+; This allows you to reprocess the manually configured free text fields that may have been mistyped with out having to
+; sit through  an entire app scrubbing.
+onlyProcessFreeTextClear = 0
+
+; # resetPw #
+; When enabled, will update the auth database and reset all user passwords.
+; To enable via command line simply pass --resetPw
+resetPw = 1
+
+; Sets execution timelimt
+timelimit = 0
+
+; Sets the memory allocation for the application
+memlimit = 1G
+
+; Number of rows to process at a time
+rowLimit = 10000
+
+; Log file location
+logfile = /data/log/scrubber.log
+
+
+; Free text fields in the App database that can be cleared:
+; Any field listed here will have its contents updated to an empty string when app is scrubbed
+; add in the following format:
+; field[] = table.field
+; field[] = otherTable.otherField
+[freeTextClear]
+field[] = SomeTable.SomeField
+
+
+

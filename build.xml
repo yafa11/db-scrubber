@@ -1,0 +1,13 @@
+<project name="App" default="composernodev" basedir=".">
+    <target name="composernodev">
+
+        <exec
+                command="composer --no-interaction --no-dev install -o"
+                passthru="true"
+                output="/dev/stdout"
+                error="/dev/stdout"
+                checkreturn="true"
+        />
+
+    </target>
+</project>
