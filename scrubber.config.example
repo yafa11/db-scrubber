@@ -3,7 +3,7 @@
 [general]
 ; # showSqlStatements #
 ; Displays the sql statements being used in the scrubber.  Do not enable this if you have production quantities of data.
-showSqlStatements = 0
+showSqlStatements = false
 
 ; Sets execution timelimt
 timelimit = 0
@@ -11,27 +11,25 @@ timelimit = 0
 ; Sets the memory allocation for the application
 memlimit = 1G
 
+; Number of tables to simultaneously process. (Number of concurrent processes)
+numberOfProcesses = 10
+
 ; Number of rows to process at a time
 rowLimit = 10000
 
-; Log file location
+; Schema that will hold the scrubber status. Three tables, scrubberJobs, scrubberProcessors, and scrubberStatus will be
+; created inside the schema. If the schema does not currently exist, the scrubber will prompt you and, if you agree,
+; create it for you.
+scrubberSchemaName = scrubber
+
+; The database credentials, from the database config file, that will be used to update the scrubber status schema
+scrubberSchemaDbConneciton = app_database
+
+; Content filler class. If you write a custom extension, specify it here
+contentFillerClass = \Scrubber\ContentFiller
+
+; Log file location relative to application root
 logfile = /data/log/scrubber.log
 
-; Content filler class
-contentFiller = \Scrubber\ContentFiller
-
-; Database Connections
-[database1]
-user = 'root'
-pass = ''
-host = '127.0.0.1'
-
-[database2]
-user = 'readwrite'
-pass = ''
-host = '10.0.0.1'
-
-
-
-
-
+; Verbose logging
+verboseLogging = false

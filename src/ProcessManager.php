@@ -2,7 +2,8 @@
 
 namespace Scrubber;
 
-use Logger;
+use Psr\Log\LoggerInterface;
+use Scrubber\Model\ScrubberConfig;
 
 class ProcessManager implements processManagerInterface
 {
@@ -10,18 +11,29 @@ class ProcessManager implements processManagerInterface
     private $statusMessage = '';
     /** @var  validatorInterface */
     private $strategyValidator;
-
+    /** @var  array */
     private $strategy;
+    /** @var  ScrubberConfig */
+    private $config;
+    /** @var  LoggerInterface */
+    private $logger;
+    /** @var statusDaoInterface  */
+    private $statusDao;
 
     public function __construct(
-        validatorInterface $validator = null
+        ScrubberConfig $config,
+        LoggerInterface $logger,
+        validatorInterface $validator,
+        statusDaoInterface $statusDao
     ){
-        $this->strategyValidator = $validator instanceof validatorInterface ? $validator : new StrategyValidator();
+        $this->config = $config;
+        $this->logger = $logger;
+        $this->strategyValidator = $validator;
+        $this->statusDao = $statusDao;
     }
 
-    public function begin($strategy, $config, Logger $logger){
+    public function begin($strategy){
         if(
-            $this->loadConfigs() &&
             $this->validateStrategy($strategy) &&
             $this->createJob() &&
             $this->updateStatusTables() &&
