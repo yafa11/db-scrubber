@@ -2,8 +2,9 @@
   "name": "yafa11/scrubber-core",
   "description": "DB Scrubber",
   "require": {
-    "ext-mysqli": "*",
-    "apache/log4php": "2.3.*"
+    "ext-PDO": "*",
+    "apache/log4php": "2.3.*",
+    "psr/log": "1.0.0"
   },
   "require-dev": {
     "phpunit/PHPUnit": "~4.0"

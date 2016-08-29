@@ -35,13 +35,3 @@ else {
 
 echo PHP_EOL . 'Done!' . PHP_EOL . PHP_EOL;
 exit(0);
-
-
-
-
-
-
-
-
-
-
